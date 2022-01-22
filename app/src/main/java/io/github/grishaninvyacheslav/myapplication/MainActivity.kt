@@ -61,40 +61,57 @@ fun ZoomableImage() {
             .background(Color.White)
             .pointerInput(Unit) {
                 detectTransformGestures { centroid, pan, zoom, rotation ->
-                    Log.d("[MYLOG]", "centroid($centroid) pan($pan) zoom($zoom) rotation($rotation)")
+                    Log.d(
+                        "[MYLOG]",
+                        "centroid($centroid) pan($pan) zoom($zoom) rotation($rotation)"
+                    )
                     scale.value *= zoom
-                    if(zoom == 1f){
+                    if (zoom == 1f) {
                         offsetState.value += pan
-                    } else{
+                    } else {
                         offsetState.value *= zoom
                     }
                 }
             }
     ) {
-        Image(
+        Box(
             modifier = Modifier
                 .align(Alignment.Center)
-                .fillMaxSize() // keep the image centralized into the Box
                 .graphicsLayer(
-                    // adding some zoom limits (min 50%, max 200%)
-//                    scaleX = maxOf(.5f, minOf(4f, scale.value)),
-//                    scaleY = maxOf(.5f, minOf(4f, scale.value)),
-                    //rotationZ = rotationState.value,
                     scaleX = scale.value,
                     scaleY = scale.value,
                     translationX = offsetState.value.x,
                     translationY = offsetState.value.y,
                 ),
-            contentDescription = "Map",
-            contentScale = ContentScale.Fit,
-            painter = painterResource(R.drawable.map)
-        )
+        ) {
+            Image(
+                modifier = Modifier
+                    .align(Alignment.Center),
+                //.fillMaxSize(),
+                contentDescription = "Map",
+                //contentScale = ContentScale.Fit,
+                painter = painterResource(R.drawable.map)
+            )
+            Image(
+                painter = painterResource(R.drawable.point),
+                contentDescription = "point",
+                Modifier
+                    .offset(21.dp, 82.dp)
+                    .graphicsLayer(
+                        scaleX = 1 / scale.value,
+                        scaleY = 1 / scale.value,
+                    )
+                    .offset(0.dp, (-37 / 2).dp)
+            )
+        }
         Image(
             painter = painterResource(R.drawable.point),
             contentDescription = "point",
-            Modifier.align(
-                Alignment.Center
-            ).offset(0.dp, (-37/2).dp)
+            Modifier
+                .align(
+                    Alignment.Center
+                )
+                .offset(0.dp, (-37 / 2).dp)
         )
     }
 }
