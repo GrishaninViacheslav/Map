@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import io.github.grishaninvyacheslav.myapplication.ui.theme.MyApplicationTheme
 
 
@@ -92,7 +94,7 @@ fun ZoomableImage() {
             contentDescription = "point",
             Modifier.align(
                 Alignment.Center
-            )
+            ).offset(0.dp, (-37/2).dp)
         )
     }
 }
