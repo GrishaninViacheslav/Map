@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -101,7 +102,8 @@ fun ZoomableImage() {
                         scaleX = 1 / scale.value,
                         scaleY = 1 / scale.value,
                     )
-                    .offset(0.dp, (-37 / 2).dp)
+                    .offset(0.dp, (-37 / 2).dp),
+                colorFilter = ColorFilter.tint(Color.Blue)
             )
         }
         Image(
