@@ -83,7 +83,8 @@ fun ZoomableImage() {
                     scaleY = scale.value,
                     translationX = offsetState.value.x,
                     translationY = offsetState.value.y,
-                ),
+                )
+                .background(Color.White),
         ) {
             Image(
                 modifier = Modifier
